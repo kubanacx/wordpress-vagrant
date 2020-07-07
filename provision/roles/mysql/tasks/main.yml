@@ -1,0 +1,24 @@
+---
+- name: Install pip3
+  apt:
+    name: python3-pip
+    state: present
+
+- name: Install PyMySQL
+  pip:
+    name: pymysql
+    state: present
+
+- name: Create DB
+  mysql_db:
+    login_unix_socket: /var/run/mysqld/mysqld.sock
+    name: wordpress
+    state: present
+
+- name: Create root user
+  mysql_user:
+    login_unix_socket: /var/run/mysqld/mysqld.sock
+    name: wp_user
+    password: wp_pass
+    priv: '*.*:ALL'
+    state: present
