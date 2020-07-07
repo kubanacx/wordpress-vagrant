@@ -1,0 +1,10 @@
+---
+- name: Dowload wordpress files
+  unarchive:
+    src: https://wordpress.org/latest.tar.gz
+    dest: /var/www/html
+    owner: root
+    group: root
+    mode: 0777
+    remote_src: yes
+    extra_opts: [--strip-components=1]
