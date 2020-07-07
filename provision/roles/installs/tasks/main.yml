@@ -1,0 +1,37 @@
+---
+- name: Install apache2
+  apt:
+    name: apache2
+    state: present
+    update_cache: yes
+
+- name: Install mysql
+  apt:
+    name: mysql-server
+    state: present
+
+- name: Install php
+  apt:
+    name: php
+    state: present
+
+- name: Install php-mod for apache2
+  apt:
+    name: libapache2-mod-php7.0
+    state: present
+
+- name: Install php-mysql
+  apt:
+    pkg:
+    - php7.0-mysql
+    state: present
+
+- name: Start apache
+  service:
+    name: apache2
+    state: restarted
+
+- name: Remove index.html
+  file:
+    path: /var/www/html/index.html
+    state: absent
