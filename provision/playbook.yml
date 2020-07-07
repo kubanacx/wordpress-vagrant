@@ -1,0 +1,9 @@
+---
+- hosts: all
+  become: True
+  vars_files:
+    - 'vars/vagrant.yml'
+  roles:
+    - installs
+    - mysql
+    - wordpress
